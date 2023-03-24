@@ -4,6 +4,7 @@
     <test name="Test">
         <classes>
             <class name="AuthorisationTest"/>
+            <class name="HomePageTest"/>
         </classes>
     </test>
 </suite>

@@ -1,8 +1,8 @@
 import data.ConfigData;
 import fragments.FWarningPopup;
 import org.openqa.selenium.WebDriver;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeTest;
+import org.testng.annotations.AfterSuite;
+import org.testng.annotations.BeforeSuite;
 import pages.PHome;
 import util.Browser;
 
@@ -18,7 +18,7 @@ public class BaseTest {
     // Declare Pages
     protected static PHome pHome;
 
-    @BeforeClass()
+    @BeforeSuite
     public void beforeSuite() {
         // Initialize Project
         driver = Browser.getInstance().getDriver();
@@ -33,5 +33,10 @@ public class BaseTest {
         pHome.openByUri();
         // Approve age restriction
         fWarningPopup.clickCheckbox().enter();
+    }
+
+    @AfterSuite
+    public void afterSuite() {
+        driver.close();
     }
 }

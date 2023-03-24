@@ -7,10 +7,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-import java.util.List;
-import java.util.stream.Collectors;
-
 public class PHome {
+    protected final String ENDPOINT = "/";
     protected WebDriver driver;
     @FindBy(xpath = "//nav[@id=\"navigation-header\"]//span[@id=\"login-btn\"]")
     private WebElement buttonLogin;
@@ -26,6 +24,10 @@ public class PHome {
     private WebElement buttonSubmitLogin;
     @FindBy(xpath = "//div[@id=\"logged-in-dropdown\"]/div[1]/div[1]/div[2]/div")
     private WebElement labelUsername;
+    @FindBy(xpath = "//nav[@id=\"navigation-header\"]//a[@id=\"logo-direct\"]")
+    private WebElement logo;
+    @FindBy(xpath = "//ul[@id='main-menu']//a[@href='https://www.clips4sale.com/clips/search']")
+    private WebElement navClips;
 
     public PHome(WebDriver driver) {
         this.driver = driver;
@@ -76,5 +78,22 @@ public class PHome {
     @Step("Get username")
     public String getUsername() {
         return labelUsername.getText();
+    }
+
+    @Step("Click logo")
+    public PHome clickLogo() {
+        logo.click();
+        return this;
+    }
+
+    @Step("Navigate to clips page")
+    public PHome navigateToClips() {
+        navClips.click();
+        return this;
+    }
+
+    @Step("Get page uri")
+    public String getPageUri() {
+        return ConfigData.BASE_URI + ENDPOINT;
     }
 }
